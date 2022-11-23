@@ -1,15 +1,31 @@
-  
-  .dark-mode {
-    background-color: black;
-    color: white;
-  }
+body {
+  padding: 25px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
 
-  .bold {
+.dark-mode {
+  background-color: black;
+  color: white;
+} 
+
+
+.bold {
     font-weight: bold;
   }
-  .normal {
+.normal {
     font-weight: normal;
   }
-  .italic {
+.italic {
     font-style: italic;
+  }
+.right {
+    text-align: right;
+  }
+.center {
+    text-align: center;
+  }
+.left {
+    text-align: left;
   }

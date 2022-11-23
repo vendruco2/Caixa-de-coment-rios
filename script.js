@@ -1,68 +1,66 @@
 const field = document.querySelector('textarea');
 const adicionar = document.querySelector('adicionar');
-
+let estilos = [];
 
 function createText() {
     let typedText = field.value;
+    const data = {
+      text: typedText,
+      styles: estilos
+    }
+    const getList = JSON.parse(localStorage.getItem('myList')) || [];
+    localStorage.setItem('myList',JSON.stringify([...getList, data]));
     const node = document.createElement("li");
     const textnode = document.createTextNode(typedText);
-     if(textarea.style.fontWeight == "bold" && textarea.style.fontStyle == "italic") {
-        node.setAttribute("class", "bold %% italic");
-    }
-    else{
-        node.setAttribute("class", "normal");
-    }
-    
-
+    estilos.forEach((estilo) => {
+    node.classList.add(estilo);
+    })
     node.appendChild(textnode);
-    document.getElementById("myList").appendChild(node);
-
-   
+    document.getElementById("myList").appendChild(node); 
 }
+
+window.onload = function() {
+    const getList = JSON.parse(localStorage.getItem('myList')) || [];
+    getList.forEach((item) => {
+        const node = document.createElement("li");
+        const textnode = document.createTextNode(item.text);
+        item.styles.forEach((estilo) => {
+          node.classList.add(estilo);
+          })
+          node.appendChild(textnode);
+        document.getElementById("myList").appendChild(node);
+    })
+}
+
 
 function removeText() {
-    document.getElementById("myList").removeChild(document.getElementById("myList").lastChild);
+    document.getElementById("myList").remove();
+    localStorage.removeItem('myList');
 }
 
+function aplicarEstilos(estilo) {
+  if
+  (estilos.includes(estilo)){
+  estilos = estilos.filter((estiloAtual) => estiloAtual !== estilo);
+  }
+  else{
+  estilos.push(estilo);
+}
+}
+
+/*darkmodde
+function darkmodde() {
+    document.body.classList.toggle("darkmodde");
+}
+*/
 
 
-function bold(){
-    if (document.getElementById("textarea").style.fontWeight=="bold"){
-        document.getElementById("textarea").style.fontWeight="normal"
-    }
-    else{
-        document.getElementById("textarea").style.fontWeight="bold"
-    }
-  
-  }
-  function italic(){
-    if (document.getElementById("textarea").style.fontStyle=="italic"){
-        document.getElementById("textarea").style.fontStyle="normal"
-    }
-    else{
-        document.getElementById("textarea").style.fontStyle="italic"
-    }
-  
-  }
-  function left(){
-    document.getElementById("textarea").style.textAlign = "left";
-  
-  }
-  function center(){
-  document.getElementById("textarea").style.textAlign = "center";
-  
-  }
-  function right(){
-  
-    document.getElementById("textarea").style.textAlign = "right";
-  
-  }
-  
-  function f9(){
-  
-    document.getElementById("textarea").style.fontWeight = "normal";
-    document.getElementById("textarea").style.textAlign = "left";
-    document.getElementById("textarea").style.fontStyle = "normal";
-    document.getElementById("textarea").style.textTransform = "capitalize";
-    document.getElementById("textarea").value=" ";
-  }
+//const getList = JSON.parse(localStorage.getItem('myList')) || [];//pegar do local storage
+//localStorage.setItem('myList',JSON.stringify(getList)); //salvar no local storage
+
+
+
+
+
+
+
