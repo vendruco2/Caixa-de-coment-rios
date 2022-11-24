@@ -6,26 +6,24 @@
     
 <body>
 <h1>Comentários</h1>
-<h2>Adicionar Comentários</h2>
-
 
 <div class="container">
+    <div class="buttons">
+        <button id= "boldbtn" class="bold format-btn" type="button" onclick="aplicarEstilos('bold')"><strong>N</strong></button>
+        <button id= "italicbtn" class="italic format-btn" type="button" onclick="aplicarEstilos('italic')"> <strong>I</strong></button>
+        <button id= "leftbtn" class="left format-btn" type="button" onclick="aplicarEstilos('left')"> <strong>E</strong></button>
+        <button id= "centerbtn" class="center format-btn" type="button" onclick="aplicarEstilos('center')"> <strong>C</strong></button>
+        <button id= "rightbtn" class="right format-btn" type="button" onclick="aplicarEstilos('right')"> <strong>D</strong></button>
+        <button onclick="darkmode()">Dark mode</button>
+    </div>
+
     <textarea id="textarea" value=""></textarea>
     
-    <div class="buttons">
-        <button type="button" onclick="aplicarEstilos('bold')"  >N</button>
-        <button class="italic" type="button" onclick="aplicarEstilos('italic')" >I</button>
-        <button class="left" classtype="button" onclick="aplicarEstilos('left')" >E</button>
-        <button class="center" type="button" onclick="aplicarEstilos('center')"  >C</button>
-        <button class="right" type="button" onclick="aplicarEstilos('right')" >D</button>
-        <button id="adicionar" onclick="createText()">Adicionar</button>
-        <button id="excluir" onclick="removeText()">Excluir</button>
-    
-        
-
-    </div>
 </div>
+<button class="adicionarbtn" id="adicionar" onclick="createText()">Adicionar</button>
+<button class="excluirbtn" id="excluir" onclick="removeText()">Excluir</button>
 <ul id="myList"></ul>
+
 <script src="script.js"></script>
 </body>
 </html>

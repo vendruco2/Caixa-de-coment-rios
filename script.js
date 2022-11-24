@@ -3,39 +3,59 @@ const adicionar = document.querySelector('adicionar');
 let estilos = [];
 
 function createText() {
-    let typedText = field.value;
-    const data = {
+  let typedText = field.value;
+  if (typedText === "" ) {
+    return;
+  }
+  const node = document.createElement("li");
+  const textnode = document.createTextNode(typedText);
+  const data = {
       text: typedText,
       styles: estilos
     }
-    const getList = JSON.parse(localStorage.getItem('myList')) || [];
+  const getList = JSON.parse(localStorage.getItem('myList')) || [];
     localStorage.setItem('myList',JSON.stringify([...getList, data]));
-    const node = document.createElement("li");
-    const textnode = document.createTextNode(typedText);
+    
     estilos.forEach((estilo) => {
     node.classList.add(estilo);
-    })
-    node.appendChild(textnode);
-    document.getElementById("myList").appendChild(node); 
-}
+    });
 
+    document.getElementById("myList").appendChild(node);
+    node.appendChild(textnode);
+    
+    field.value = "";
+
+}
+document.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    var enviar = document.getElementById("adicionar");
+    enviar.click();
+  }
+});
+
+
+  
 window.onload = function() {
-    const getList = JSON.parse(localStorage.getItem('myList')) || [];
+  const getList = JSON.parse(localStorage.getItem('myList')) || [];
     getList.forEach((item) => {
-        const node = document.createElement("li");
-        const textnode = document.createTextNode(item.text);
-        item.styles.forEach((estilo) => {
-          node.classList.add(estilo);
-          })
-          node.appendChild(textnode);
+      const node = document.createElement("li");
+      const textnode = document.createTextNode(item.text);
+    item.styles.forEach((estilo) => {
+    node.classList.add(estilo);
+    })
+        node.appendChild(textnode);
         document.getElementById("myList").appendChild(node);
     })
 }
 
 
 function removeText() {
-    document.getElementById("myList").remove();
+  const remove = document.getElementById("myList");
+  remove.removeChild(remove.lastElementChild)
+  while(remove.firstChild){
+    remove.removeChild(remove.firstChild);
     localStorage.removeItem('myList');
+  }
 }
 
 function aplicarEstilos(estilo) {
@@ -48,15 +68,45 @@ function aplicarEstilos(estilo) {
 }
 }
 
-/*darkmodde
-function darkmodde() {
-    document.body.classList.toggle("darkmodde");
+/*darkmodde*/
+function darkmode() {
+    document.body.classList.toggle("darkmode");
 }
-*/
 
 
-//const getList = JSON.parse(localStorage.getItem('myList')) || [];//pegar do local storage
-//localStorage.setItem('myList',JSON.stringify(getList)); //salvar no local storage
+
+const boldbtn = document.getElementById("boldbtn");
+boldbtn.addEventListener("click", () => { 
+  boldbtn.classList.toggle("clicked");
+});
+
+const italicbtn = document.getElementById("italicbtn");
+italicbtn.addEventListener("click", () => { 
+  italicbtn.classList.toggle("clicked");
+});
+
+const leftbtn = document.getElementById("leftbtn");
+leftbtn.addEventListener("click", () => { 
+  leftbtn.classList.toggle("clicked");
+});
+
+const centerbtn = document.getElementById("centerbtn");
+centerbtn.addEventListener("click", () => { 
+  centerbtn.classList.toggle("clicked");
+});
+
+const rightbtn = document.getElementById("rightbtn");
+rightbtn.addEventListener("click", () => { 
+  rightbtn.classList.toggle("clicked");
+});
+
+
+
+
+
+
+
+
 
 
 
